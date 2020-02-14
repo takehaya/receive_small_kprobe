@@ -7,11 +7,10 @@
 
 static char func_name[NAME_MAX] = "receive_small";
 module_param_string(func, func_name, NAME_MAX, S_IRUGO);
-MODULE_PARM_DESC(func, "Function to kretprobe");
-
+MODULE_PARM_DESC(func, "Function to receive_small");
 
 static int entry_handler(struct kretprobe_instance * ri, struct pt_regs * regs) {
-    if (!current - > mm)/* Skip kernel threads */
+    if (!current->mm)/* Skip kernel threads */
         return 1;
 
     return 0;
